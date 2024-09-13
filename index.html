@@ -3,15 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./index.css" type="text/css" rel="stylesheet" />
     <title>Document</title>
   </head>
   <body>
-    <div id="main-div"></div>
-    <script>
-      const divElement = document.getElementById("main-div");
-      const heading = document.createElement("h1");
-      heading.innerHTML = "Hello World!";
-      divElement.appendChild(heading);
-    </script>
+    <div id="root"></div>
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>
