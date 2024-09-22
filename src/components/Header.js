@@ -24,9 +24,9 @@ export const Header = () => {
         <li onClick={() => navigate("/cart")} className="font-bold">
           Cart({cartItems.length})
         </li>
-        <li onClick={() => setLoginToggle((prev) => !prev)}>
+        <button onClick={() => setLoginToggle((prev) => !prev)}>
           {loginToggle ? "Login" : "Logout"}
-        </li>
+        </button>
         <li className="text-orange-600">{user}</li>
       </ul>
     </div>

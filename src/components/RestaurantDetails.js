@@ -11,6 +11,8 @@ export const RestaurantDetails = () => {
   const params = useParams();
   const restaurantId = params.resId;
   //const resData = useRestaurantMenu(restaurantId);
+  console.log("restaurantId", restaurantId);
+
   const {
     data: resData,
     error,
@@ -24,6 +26,8 @@ export const RestaurantDetails = () => {
   if (isLoading) {
     return <Shimmer />;
   }
+
+  console.log("resData", resData);
 
   const { name, avgRating, costForTwoMessage, cuisines } =
     resData?.data?.cards[2].card.card.info;

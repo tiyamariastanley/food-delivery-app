@@ -9,10 +9,13 @@ const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
+      console.log(state.items);
+
       state.items.push(action.payload);
       localStorage.setItem("restaurantCartItems", JSON.stringify(state.items));
     },
     removeItem: (state, action) => {
+      // Not fully implemented
       state.items.pop();
       localStorage.setItem("restaurantCartItems", JSON.stringify(state.items));
     },

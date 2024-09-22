@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { IMG_URL } from "./utils/Constants";
 import { useNavigate } from "react-router-dom";
 
-export const Card = ({ item }) => {
-  const data = item.info;
+export const Card = ({ data }) => {
   const navigate = useNavigate();
 
   return (
     <div
       className="w-60 transform transition ease-in hover:scale-90"
       onClick={() => navigate(`/restaurant/${data.id}`)}
+      data-testid="res-list-card"
     >
       <img
         src={IMG_URL + "/" + data.cloudinaryImageId}
@@ -30,7 +30,7 @@ export const Card = ({ item }) => {
 
 export const OfferCard = (Card) => {
   return (props) => {
-    const data = props.item.info;
+    const data = props.data;
     const offer = Object.values(data.aggregatedDiscountInfoV3).map(
       (value) => value
     );
