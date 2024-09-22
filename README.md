@@ -14,8 +14,8 @@ Namaste React project
 # Developer Testing
 
 - Unit Testing - Test components in isolation
-- Integration Testing - Testing components interactions
-- E2E Testing - Testing the whole app flows (from user enters to user exits the page) - tools are needed like cypress
+- Integration Testing - Testing component interactions
+- E2E Testing - Testing the whole app flow (from user enters to user exits the page) - tools are needed like cypress
 
 # React Testing Library installation
 
