@@ -35,11 +35,10 @@ it("Checks if search is working properly", async () => {
     </BrowserRouter>
   );
 
-  const search = screen.getByText(/Search/);
   const searchInput = screen.getByPlaceholderText(/Search/);
 
   fireEvent.change(searchInput, { target: { value: "kfc" } });
-  fireEvent.click(search);
+
   await waitFor(() => {
     const filteredCards = screen.getAllByTestId("res-list-card");
     expect(filteredCards.length).toBe(1);
