@@ -27,7 +27,9 @@ export const Header = () => {
         <button onClick={() => setLoginToggle((prev) => !prev)}>
           {loginToggle ? "Login" : "Logout"}
         </button>
-        <li className="text-orange-600">{user}</li>
+        <li className="text-orange-600">
+          {user} {!userStatus ? "🔴" : ""}
+        </li>
       </ul>
     </div>
   );

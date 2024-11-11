@@ -7,6 +7,17 @@
  * Consider migrating to a more modern test runner if
  * you don't want to deal with this.
  */
+
+if (typeof global.BroadcastChannel === "undefined") {
+  global.BroadcastChannel = function () {
+    return {
+      postMessage: jest.fn(),
+      close: jest.fn(),
+      onmessage: jest.fn(),
+    };
+  };
+}
+
 const { performance } = require("node:perf_hooks");
 const { TextDecoder, TextEncoder } = require("node:util");
 const { ReadableStream, TransformStream } = require("node:stream/web");

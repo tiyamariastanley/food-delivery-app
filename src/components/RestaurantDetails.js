@@ -8,6 +8,7 @@ import { MenuAccordion } from "./MenuAccordion";
 import { useGetRestaurantByIdQuery } from "./utils/services/restaurant";
 
 export const RestaurantDetails = () => {
+  console.log("RestaurantDetails component rendered");
   const params = useParams();
   const restaurantId = params.resId;
   //const resData = useRestaurantMenu(restaurantId);
@@ -57,7 +58,7 @@ export const RestaurantDetails = () => {
           menuList.map(
             (item, index) =>
               index !== 0 &&
-              item.card.card.title && (
+              item.card.card.itemCards && (
                 <MenuAccordion
                   key={item.card.card.title}
                   menuCategory={item.card.card}

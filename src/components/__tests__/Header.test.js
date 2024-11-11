@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import Store from "../../components/utils/Store";
 import { BrowserRouter } from "react-router-dom";
 
-it("Checks for login button", () => {
+it("Checks if Header loaded properly", () => {
   // Need to wrap with provider and store as its an isolated testing.
   // It will throw error for libraries and frameworks used in the components.
 

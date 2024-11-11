@@ -26,7 +26,11 @@ export const Cart = () => {
           </button>
           <div className="bg-white mt-20 p-5">
             {cartItems.map((item) => (
-              <MenuItem key={item.card.info.id} item={item}></MenuItem>
+              <MenuItem
+                key={item.card.info.id}
+                item={item}
+                type="remove"
+              ></MenuItem>
             ))}
           </div>
         </>

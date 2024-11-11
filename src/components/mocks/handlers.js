@@ -17,6 +17,8 @@ export const handlers = [
     console.log("Second request with restaurantId:", restaurantId);
 
     if (restaurantId === "377396") {
+      console.log("inside");
+
       return HttpResponse.json(MOCK_RES_DETAILS_DATA); // Ensure this data matches your expectations
     } else {
       return HttpResponse.status(404);

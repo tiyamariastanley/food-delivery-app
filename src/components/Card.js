@@ -3,14 +3,8 @@ import { IMG_URL } from "./utils/Constants";
 import { useNavigate } from "react-router-dom";
 
 export const Card = ({ data }) => {
-  const navigate = useNavigate();
-
   return (
-    <div
-      className="w-60 transform transition ease-in hover:scale-90"
-      onClick={() => navigate(`/restaurant/${data.id}`)}
-      data-testid="res-list-card"
-    >
+    <div>
       <img
         src={IMG_URL + "/" + data.cloudinaryImageId}
         className="rounded-2xl w-full h-48 shadow-black"
@@ -37,9 +31,11 @@ export const OfferCard = (Card) => {
 
     return (
       <div className="w-60">
-        <p className="absolute text-white font-bold z-10 ml-5 mb-5 truncate">
-          {offer.join(" ")}
-        </p>
+        <div className="absolute bg-gradient-to-b from-black w-full h-[30%] rounded-t-2xl">
+          <p className="text-white font-bold ml-5 mb-5 overflow-hidden">
+            {offer.join(" ")}
+          </p>
+        </div>
         <Card {...props}></Card>
       </div>
     );

@@ -15,8 +15,10 @@ const CartSlice = createSlice({
       localStorage.setItem("restaurantCartItems", JSON.stringify(state.items));
     },
     removeItem: (state, action) => {
-      // Not fully implemented
-      state.items.pop();
+      state.items = state.items.filter(
+        (item) => item.card.info.id !== action.payload.card.info.id
+      );
+
       localStorage.setItem("restaurantCartItems", JSON.stringify(state.items));
     },
     clearCart: (state) => {

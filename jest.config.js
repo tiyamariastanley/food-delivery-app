@@ -133,7 +133,7 @@ const config = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  setupFiles: ["./jest.polyfills.js"],
+  setupFiles: ["<rootDir>/jest.polyfills.js"],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"],
@@ -176,13 +176,14 @@ const config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    "^.+\\.jsx?$": "babel-jest",
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
-  // ],
+  transformIgnorePatterns: [
+    "/node_modules/(?!@bundled-es-modules)", // Transpile only this specific module
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

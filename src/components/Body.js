@@ -3,6 +3,7 @@ import { Card, OfferCard } from "./Card";
 import { isEmpty } from "lodash";
 import { Shimmer } from "./Shimmer";
 import { useGetRestaurantListQuery } from "./utils/services/restaurant";
+import { useNavigate } from "react-router-dom";
 
 export const Body = () => {
   const [resData, setResData] = useState([]);
@@ -11,6 +12,9 @@ export const Body = () => {
   const observerTarget = useRef(null);
   const OfferCardComponent = OfferCard(Card);
   const { data, error, isLoading } = useGetRestaurantListQuery();
+  const navigate = useNavigate();
+
+  // cannot do auto fetch as swiggy update API is protected and cannot be accessed.
 
   // useEffect(() => {
   //   const observer = new IntersectionObserver(
@@ -42,7 +46,7 @@ export const Body = () => {
   //     "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
   //   );
   //   const data = await res.json();
-  //   setData(
+  //   setResData(
   //     data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants
   //   );
   //   setFilteredData(
@@ -116,7 +120,7 @@ export const Body = () => {
     setFilteredData(topRated);
   };
 
-  const searchHandler = () => {
+  const searchHandler = (searchValue) => {
     if (searchValue) {
       const filtered = resData.filter((item) => {
         return item.info.name.toLowerCase().includes(searchValue);
@@ -133,7 +137,7 @@ export const Body = () => {
     <div className="p-4">
       <div className="flex mb-16">
         <button
-          className="font-bold bg-green-300 px-2 py-1 rounded-lg"
+          className="font-bold bg-green-300 px-2 rounded-lg"
           onClick={showTopRated}
         >
           Top Rated
@@ -141,28 +145,30 @@ export const Body = () => {
 
         <div className="flex gap-4 mx-auto bg-gray-200 p-2 rounded-lg">
           <input
-            onChange={(e) => setSearchValue(e.target.value)}
-            className="border bg-gray-200"
+            onChange={(e) => searchHandler(e.target.value)}
+            className="border bg-gray-200 focus:outline-none focus:border-transparent"
             placeholder="Search..."
           ></input>
-          {"  "}
-          <button
-            onClick={searchHandler}
-            className="bg-blue-800 py-1 px-2 text-white rounded-lg"
-          >
-            Search
-          </button>
+          <span>🔍</span>
         </div>
       </div>
-      <div className="flex flex-wrap gap-8 justify-center sm:justify-start">
+
+      <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-5">
         {!isLoading ? (
-          filteredData.map((item) =>
-            !isEmpty(item.info.aggregatedDiscountInfoV3) ? (
-              <OfferCardComponent key={item.info.id} data={item.info} />
-            ) : (
-              <Card key={item.info.id} data={item.info} />
-            )
-          )
+          filteredData.map((item) => (
+            <div
+              className="w-60 transform transition ease-in hover:scale-90"
+              onClick={() => navigate(`/restaurant/${item.info.id}`)}
+              data-testid="res-list-card"
+              key={item.info.id}
+            >
+              {!isEmpty(item.info.aggregatedDiscountInfoV3) ? (
+                <OfferCardComponent key={item.info.id} data={item.info} />
+              ) : (
+                <Card key={item.info.id} data={item.info} />
+              )}
+            </div>
+          ))
         ) : (
           <>
             <Shimmer></Shimmer>

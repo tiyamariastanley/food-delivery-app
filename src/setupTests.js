@@ -8,3 +8,5 @@ afterEach(() => server.resetHandlers());
 
 // Clean up and close server after tests.
 afterAll(() => server.close());
+
+console.log("setupTests.js is loaded");
